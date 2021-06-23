@@ -26,6 +26,8 @@ package work.jeong.murry.jsend;
 
 import org.junit.Test;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.StringJoiner;
 
 import static org.junit.Assert.assertEquals;
@@ -87,5 +89,33 @@ public class JSendTest {
           .add("name='" + name + "'")
           .toString();
     }
+  }
+
+  private class Kalendar {
+    private final Date date;
+    private final Timestamp timestamp;
+
+    public Kalendar(Date date, Timestamp timestamp) {
+      this.date = date;
+      this.timestamp = timestamp;
+    }
+
+    public Date getDate() {
+      return date;
+    }
+
+    public Timestamp getTimestamp() {
+      return timestamp;
+    }
+  }
+
+  @Test
+  public void ok_with_datetimestamp() {
+    Kalendar kalendar = new Kalendar(
+                                Date.valueOf("2021-12-27"),
+                                Timestamp.valueOf("2021-03-03 21:10:15")
+                            );
+    JSend success = JSend.success(kalendar);
+    assertEquals(success.toJsonString(), "{\"status\":\"success\",\"data\":{\"date\":\"2021-12-27\",\"timestamp\":\"2021-03-03 21:10:15\"}}");
   }
 }

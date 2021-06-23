@@ -24,16 +24,27 @@
 
 package work.jeong.murry.jsend;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * JsonUtils
  *
  * @author Murry Jeong (comchangs@gmail.com)
+ *  
+ * Modified to override default Gson JSON format of Date and Timestamp 
+ * by Heykal Abdillah
+ * 
  */
 public class JsonUtils {
 
-  private static final Gson GSON = new Gson();
+  private static final Gson GSON = new GsonBuilder()
+                                        .registerTypeAdapter(Date.class, new DateSerializer())
+                                        .registerTypeAdapter(Timestamp.class, new TimestampSerializer())
+                                        .create();
 
   public static String toJson(Object object) {
     return GSON.toJson(object);
