@@ -1,9 +1,10 @@
 # jsend 
-A library used for generating Json String of JSend
+A library used for generating Json String of JSend, modified to override default Gson JSON format of Date and Timestamp
 
 [![Maven Central](https://img.shields.io/maven-central/v/work.jeong.murry.jsend/jsend.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:%22work.jeong.murry.jsend%22%20AND%20a:%22jsend%22)
 
 ## Setting
+### This modified code don't have a binary! You have to compile it and put in your own local repo
 ### Maven
 ```xml
 <dependency>
